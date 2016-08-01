@@ -15,7 +15,7 @@
     </p> -->
     <ion-list>
       <div ng-repeat="(website, hotnews) in websites">
-          <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="news in hotnews" type="item-text-wrap" href="{{ news.href }}">
+          <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="news in hotnews" type="item-text-wrap" ng-click="openLink(news.href)">
           <!-- <img ng-src="{{chat.face}}"> -->
           <h2>{{website}}</h2>
           <p>{{news.name}}</p>

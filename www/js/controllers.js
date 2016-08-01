@@ -2,6 +2,11 @@ angular.module('starter.controllers', [])
 
 .controller('DashCtrl', ['$scope', 'api', function($scope, api) {
   $scope.websites = {};
+
+  $scope.openLink = function(link) {
+    window.open(link, '_blank', 'location=yes');
+  };
+
   api.hotnews(function(hotnews){
     setHotnewsByWebsite(hotnews);
   });
@@ -16,7 +21,6 @@ angular.module('starter.controllers', [])
         $scope.websites[news.website].push(news);
       }
     });
-    console.log($scope.websites);
   }
 
 }])
