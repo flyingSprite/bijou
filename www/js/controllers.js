@@ -67,6 +67,12 @@ angular.module('starter.controllers', [])
 
 .controller('AccountCtrl', function($scope) {
   $scope.settings = {
-    enableFriends: true
+    enableFriends: true,
+    firstName: '',
+    lastName: ''
+  };
+
+  $scope.submitForm = function() {
+    console.log($scope.settings);
   };
 });
