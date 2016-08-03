@@ -7,11 +7,32 @@ angular.module('starter.controllers', [])
     window.open(link, '_blank', 'location=yes');
   };
 
-  api.hotnews(function(hotnews){
-    setHotnewsByWebsite(hotnews);
+  $scope.doRefresh = function(name) {
+    api.hotnews().success(function(hotnews) {
+      if (hotnews) {
+        setHotnewsByWebsite(hotnews, name);
+      }
+    }).finally(function() {
+      $scope.$broadcast(name);
+    });
+  };
+
+  api.hotnews().success(function(hotnews) {
+    if (hotnews) {
+      setHotnewsByWebsite(hotnews);
+    }
   });
 
+  // api.hotnews(function(hotnews){
+  //   setHotnewsByWebsite(hotnews);
+  // });
+
   function setHotnewsByWebsite(hotnews) {
+    for (var website in $scope.websites) {
+      if (angular.isArray($scope.websites[website])) {
+        $scope.websites[website].length = 0;
+      }
+    }
     angular.forEach(hotnews, function(news) {
       var website = $scope.websites[news.website];
       if (website) {

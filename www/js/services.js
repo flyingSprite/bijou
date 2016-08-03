@@ -87,13 +87,17 @@ angular.module('starter.services', [])
   }])
 .service('api', ['apHttp', function (apHttp) {
 
-  this.hotnews = function(success, error) {
-    apHttp({method: 'GET', url: '/hotnews'})
-    .success(function(hotnews) {
-      hotnews && success && success(hotnews);
-    })
-    .error(function(err) {
-      err && error && error(err);
-    });
+  this.hotnews = function() {
+    return apHttp({method: 'GET', url: '/hotnews'});
   };
+
+  // this.hotnews = function(success, error) {
+  //   apHttp({method: 'GET', url: '/hotnews'})
+  //   .success(function(hotnews) {
+  //     hotnews && success && success(hotnews);
+  //   })
+  //   .error(function(err) {
+  //     err && error && error(err);
+  //   });
+  // };
 }]);
